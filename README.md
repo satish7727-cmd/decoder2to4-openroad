@@ -1,105 +1,95 @@
-# 2-to-4 Decoder ASIC Implementation using OpenROAD
+---
 
-## 📌 Project Overview
+## 📊 Implementation Results
 
-This project implements a synchronous 2-to-4 decoder and takes the design through a complete digital ASIC RTL-to-GDSII flow using OpenROAD-flow-scripts and the SKY130HD standard-cell library.
+The following results were obtained from the completed RTL-to-GDSII implementation using the SKY130HD standard-cell library.
 
-The design was written in Verilog, functionally verified using simulation, synthesized using Yosys, and physically implemented using OpenROAD.
+| Parameter | Result |
+|---|---:|
+| Process Technology | SKY130 |
+| Standard-Cell Library | SKY130HD |
+| Supply Voltage | 1.8 V |
+| Clock Period | 10 ns |
+| Target Frequency | 100 MHz |
+| Total Power | 42.3 µW |
+| Worst-Case IR Drop | 89.1 µV |
+| Average IR Drop | 16.7 µV |
+| Wire Length – met1 | 83.17 µm |
+| Wire Length – met2 | 92.77 µm |
+| Wire Length – met3 | 33.28 µm |
 
-The project demonstrates the complete digital ASIC implementation flow from RTL design to final physical layout.
+> **Note:** The power and IR-drop values are taken from the OpenROAD post-route analysis reports. Wire-length values are obtained from the detailed routing report.
 
 ---
 
-## 🎯 Design Objective
+## 📸 Visual Results
 
-The objective of this project is to implement a 2-to-4 decoder with:
+### 1. Yosys Synthesis
 
-- Two input signals: `A` and `B`
-- Enable signal: `en`
-- Clock signal: `clk`
-- Four output signals: `Y[3:0]`
+The RTL design was synthesized using Yosys and mapped to SKY130HD standard cells.
 
-The decoder produces one-hot output corresponding to the binary value of inputs `A` and `B`.
+![Yosys Synthesis Schematic](images/yosys_synthesis_schematic.png)
 
 ---
 
-## 🧩 Decoder Truth Table
+### 2. Gate-Level Simulation
 
-| Enable | A | B | Y[3:0] |
-|:------:|:-:|:-:|:------:|
-| 0 | X | X | 0000 |
-| 1 | 0 | 0 | 0001 |
-| 1 | 0 | 1 | 0010 |
-| 1 | 1 | 0 | 0100 |
-| 1 | 1 | 1 | 1000 |
+The final gate-level netlist was simulated using Icarus Verilog and the resulting waveform was analyzed using GTKWave.
 
-The output is updated on the rising edge of the clock.
+![GTKWave Functional Simulation](images/gtkwave_functional_simulation.png)
 
 ---
 
-## 🛠️ Tools Used
+### 3. Final OpenROAD Layout
 
-| Tool | Purpose |
-|---|---|
-| Verilog | RTL design |
-| Icarus Verilog | RTL and gate-level simulation |
-| GTKWave | Waveform analysis |
-| Yosys | RTL synthesis |
-| OpenROAD | Physical design |
-| OpenROAD-flow-scripts | Complete RTL-to-GDS flow |
-| SKY130 PDK | Semiconductor technology |
-| SKY130HD | Standard-cell library |
+The final physical implementation was loaded in the OpenROAD GUI after placement, clock-tree synthesis, routing, filler insertion, and final extraction.
+
+![OpenROAD Final Layout](images/openroad_final_layout.png)
 
 ---
 
-## 🔬 Technology
-
-- Process: SKY130
-- Standard-cell library: SKY130HD
-- Supply voltage: 1.8 V
-- Clock period: 10 ns
-- Target clock frequency: 100 MHz
-
----
-
-# 🔄 RTL-to-GDSII Flow
-
-The design was implemented using the following ASIC flow:
+## 📁 Repository Structure
 
 ```text
-                Verilog RTL
-                    │
-                    ▼
-             RTL Simulation
-                    │
-                    ▼
-             Logic Synthesis
-                 (Yosys)
-                    │
-                    ▼
-              Floorplanning
-                    │
-                    ▼
-            Power Distribution
-                 Network
-                    │
-                    ▼
-                Placement
-                    │
-                    ▼
-       Clock Tree Synthesis (CTS)
-                    │
-                    ▼
-             Global Routing
-                    │
-                    ▼
-            Detailed Routing
-                    │
-                    ▼
-              Filler Cells
-                    │
-                    ▼
-             Final Extraction
-                    │
-                    ▼
-               GDSII Layout
+decoder2to4-openroad/
+│
+├── rtl/
+│   └── decoder2to4.v
+│
+├── tb/
+│   └── decoder2to4_tb.v
+│
+├── constraints/
+│   └── decoder2to4.sdc
+│
+├── scripts/
+│   ├── area.tcl
+│   ├── timing.tcl
+│   ├── power.tcl
+│   ├── wirelength.tcl
+│   ├── ircheck.tcl
+│   └── iranalysis.tcl
+│
+├── reports/
+│   ├── area.txt
+│   ├── timing.txt
+│   ├── power.txt
+│   ├── wirelength.txt
+│   └── ir_drop.txt
+│
+├── simulation/
+│   ├── decoder2to4.vcd
+│   └── gate_decoder2to4.vcd
+│
+├── results/
+│   ├── 6_final.v
+│   ├── 6_final.def
+│   ├── 6_final.gds
+│   └── 6_final.spef
+│
+├── images/
+│   ├── yosys_synthesis_schematic.png
+│   ├── gtkwave_functional_simulation.png
+│   └── openroad_final_layout.png
+│
+└── README.md
