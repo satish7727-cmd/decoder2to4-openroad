@@ -1,0 +1,10 @@
+========== TIMING REPORT ==========
+
+Clock period       : 10 ns
+Clock frequency    : 100 MHz
+
+WNS                : 0 ns
+TNS                : 0 ns
+
+Worst path delay   : 1.32 ns
+Worst slack        : 7.68 ns

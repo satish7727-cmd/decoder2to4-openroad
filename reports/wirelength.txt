@@ -1,0 +1,7 @@
+========== WIRE LENGTH REPORT ==========
+
+met1 : 83.17 um
+met2 : 92.77 um
+met3 : 33.28 um
+
+Total detailed-route wire length : 209.22 um

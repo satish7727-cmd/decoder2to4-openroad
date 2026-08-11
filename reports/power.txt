@@ -1,0 +1,11 @@
+========== POWER REPORT ==========
+
+Supply voltage    : 1.80 V
+Clock frequency   : 100 MHz
+
+Total power       : 42.0 uW
+Internal power    : 32.6 uW
+Switching power   : 9.32 uW
+Leakage power     : 9.49e-11 W
+
+Energy per cycle  : approximately 0.42 pJ

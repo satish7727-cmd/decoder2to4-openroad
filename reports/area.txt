@@ -1,0 +1,6 @@
+========== AREA REPORT ==========
+
+Technology : SKY130HD
+
+Design area : 210 um^2
+Utilization : 21%

@@ -1,0 +1,14 @@
+========== IR DROP REPORT ==========
+
+Supply voltage       : 1.80 V
+
+Worst-case voltage   : 1.80 V
+Average voltage      : 1.80 V
+
+Average IR drop      : 1.67e-05 V
+Worst-case IR drop   : 8.91e-05 V
+
+Worst-case IR drop   : 89.1 uV
+
+VDD power grid       : Connected
+VSS power grid       : Connected
